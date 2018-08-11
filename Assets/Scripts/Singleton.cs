@@ -22,7 +22,7 @@ public class Singleton : MonoBehaviour
 	public ReleasePlatform platform;
 	public FloatText gft;
 
-    public int cc = 10;
+    public int slotid = 0;
 
 	void Awake()
 	{

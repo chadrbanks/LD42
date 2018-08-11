@@ -35,7 +35,7 @@ public class MainEngine : MonoBehaviour
 	{
         Vector3 nv = new Vector3( Random.Range(-40, 40), 30, Random.Range(-40, 40) );
         Star b = Instantiate(c, nv, Quaternion.identity) as Star;
-        //b.Waste();
+        b.Waste();
 		//b.LinkM(this);
 	}
 

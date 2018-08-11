@@ -20,6 +20,11 @@ public class Star : MonoBehaviour
         //
     }
 
+    public void Waste()
+    {
+        //
+    }
+
     void OnMouseDown()
     {
         Destroy(gameObject);
