@@ -367,7 +367,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 709532687}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!102 &494611700
 TextMesh:
@@ -456,12 +456,12 @@ Transform:
   - {fileID: 1572028700}
   - {fileID: 463222354}
   - {fileID: 287827125}
-  - {fileID: 1793954201}
   - {fileID: 494611699}
   - {fileID: 2041572641}
   - {fileID: 1683097740}
   - {fileID: 1541424658}
   - {fileID: 196192134}
+  - {fileID: 1793954201}
   - {fileID: 905911231}
   - {fileID: 1769500006}
   - {fileID: 782573130}
@@ -561,7 +561,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4266015810058838, guid: e45d555739c974a32a06034f32dad2ee, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -7.82
+      value: -7.5000005
       objectReference: {fileID: 0}
     - target: {fileID: 4266015810058838, guid: e45d555739c974a32a06034f32dad2ee, type: 2}
       propertyPath: m_LocalPosition.z
@@ -843,7 +843,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1348283509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.14, y: -7.31, z: 1.98}
+  m_LocalPosition: {x: -2.09, y: -7.31, z: 1.98}
   m_LocalScale: {x: 4, y: 1.0000005, z: 1.0000005}
   m_Children:
   - {fileID: 1082897807}
@@ -931,7 +931,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4266015810058838, guid: e45d555739c974a32a06034f32dad2ee, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.7100008
+      value: 4.03
       objectReference: {fileID: 0}
     - target: {fileID: 4266015810058838, guid: e45d555739c974a32a06034f32dad2ee, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1019,7 +1019,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4815507361736644, guid: c7b40876ec9a940a280ed5f06fccf6a3, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4930179051229796, guid: c7b40876ec9a940a280ed5f06fccf6a3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1183,7 +1183,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4815507361736644, guid: c7b40876ec9a940a280ed5f06fccf6a3, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4930179051229796, guid: c7b40876ec9a940a280ed5f06fccf6a3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1340,7 +1340,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4266015810058838, guid: e45d555739c974a32a06034f32dad2ee, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.1599991
+      value: -1.8399994
       objectReference: {fileID: 0}
     - target: {fileID: 4266015810058838, guid: e45d555739c974a32a06034f32dad2ee, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1488,7 +1488,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4815507361736644, guid: c7b40876ec9a940a280ed5f06fccf6a3, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4930179051229796, guid: c7b40876ec9a940a280ed5f06fccf6a3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1529,11 +1529,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1793954200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.54, y: 6.75, z: 9}
+  m_LocalPosition: {x: 24.54, y: 7, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 709532687}
-  m_RootOrder: 3
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!102 &1793954202
 TextMesh:
@@ -1624,11 +1624,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2041572640}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.22, y: -11.24, z: 9}
+  m_LocalPosition: {x: 20.08, y: -10.85, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 709532687}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!102 &2041572642
 TextMesh:
@@ -1641,7 +1641,7 @@ TextMesh:
   m_OffsetZ: 0
   m_CharacterSize: 0.1
   m_LineSpacing: 1
-  m_Anchor: 3
+  m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
   m_FontSize: 80

@@ -69,6 +69,7 @@ public class GameEngine : MonoBehaviour
 
     public void ItemClickStore(StoreItem item)
     {
+        int cap = goods[1] + goods[2] + goods[3];
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             if (credits >= prices[item.id] * 10)
@@ -77,7 +78,7 @@ public class GameEngine : MonoBehaviour
                 goods[item.id] += 10;
            }
         }
-        else if( credits >= prices[item.id] )
+        else if( credits >= prices[item.id] && cap < 10 )
         {
             credits -= prices[item.id];
             goods[item.id]++;
@@ -86,8 +87,10 @@ public class GameEngine : MonoBehaviour
 
     void Update ()
     {
-        Debug.Log(Input.GetKeyDown(KeyCode.LeftShift));
-        ctxt.text = "Credits: " + credits;// + "  Fuel: " + goods[3];
+        //Debug.Log(Input.GetKeyDown(KeyCode.LeftShift));
+
+        int cap = goods[1] + goods[2] + goods[3];
+        ctxt.text = "Credits: " + credits + "\nCapacity: " + cap + "/10";
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
