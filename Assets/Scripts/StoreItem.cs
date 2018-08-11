@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameItem : MonoBehaviour
+public class StoreItem : MonoBehaviour
 {
     GameEngine engn;
     [SerializeField] private Renderer m_Renderer;
@@ -10,24 +10,24 @@ public class GameItem : MonoBehaviour
 
     public int id = 1;
 
-	void Start ()
+    void Start()
     {
         //
     }
 
     void OnMouseDown()
     {
-        engn.ItemClickInventory(this);
+        engn.ItemClickStore(this);
     }
 
-    public void Setup( GameEngine ge )
+    public void Setup(GameEngine ge)
     {
         engn = ge;
         m_Renderer.material = engn.bgs[id];
     }
 
-	void Update ()
+    void Update()
     {
-        ctxt.text = "Qty: " + engn.goods[id];
-	}
+        ctxt.text = "Cost: " + engn.prices[id];
+    }
 }
