@@ -54,7 +54,7 @@ public class MenuButton : MonoBehaviour
 
 		if (bt == MenuButtonType.Start)
 		{
-			SceneManager.LoadScene ("GameScene", LoadSceneMode.Single);
+			SceneManager.LoadScene ("ShipScene", LoadSceneMode.Single);
 		}
 		else if (bt == MenuButtonType.Credits)
 		{
