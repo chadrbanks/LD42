@@ -13,15 +13,6 @@ public class GameEngine : MonoBehaviour
 
 	void Start ()
     {
-        Singleton.data.goods.Add(0);
-        Singleton.data.goods.Add(1);
-        Singleton.data.goods.Add(0);
-        Singleton.data.goods.Add(1);
-        Singleton.data.prices.Add(Random.Range(1, 200));
-        Singleton.data.prices.Add(Random.Range(1, 200));
-        Singleton.data.prices.Add(Random.Range(1, 200));
-        Singleton.data.prices.Add(Random.Range(1, 100));
-
         for (int x = 0; x < slots.Length; x++)
         {
             slots[x].Setup(this);

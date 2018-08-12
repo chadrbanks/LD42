@@ -23,7 +23,7 @@ public class Singleton : MonoBehaviour
 	public FloatText gft;
 
 
-    public float credits = 200;
+    public float credits = 0;
     public List<int> goods = new List<int>();
     public List<int> prices = new List<int>();
     public int ship = 0;
@@ -34,11 +34,31 @@ public class Singleton : MonoBehaviour
 		if (data == null)
 		{
 			DontDestroyOnLoad(gameObject);
-			data = this;
+            data = this;
+            Singleton.data.restartGame();
 		}
 		else if (data != this)
 		{
 			Destroy(gameObject);
 		}
 	}
+
+    public void restartGame()
+    {
+        Singleton.data.ship = 0;
+        Singleton.data.planet = 1;
+        Singleton.data.credits = 200;
+
+        Singleton.data.goods = new List<int>();
+        Singleton.data.prices = new List<int>();
+
+        Singleton.data.goods.Add(0);
+        Singleton.data.goods.Add(1);
+        Singleton.data.goods.Add(0);
+        Singleton.data.goods.Add(1);
+        Singleton.data.prices.Add(0);
+        Singleton.data.prices.Add(Random.Range(1, 200));
+        Singleton.data.prices.Add(Random.Range(1, 200));
+        Singleton.data.prices.Add(Random.Range(1, 100));
+    }
 }

@@ -53,7 +53,9 @@ public class MenuButton : MonoBehaviour
 		m_Renderer.material = m_OverMaterial;//m_NormalMaterial;
 
 		if (bt == MenuButtonType.Start)
-		{
+        {
+            Singleton.data.restartGame();
+
 			SceneManager.LoadScene ("ShipScene", LoadSceneMode.Single);
 		}
 		else if (bt == MenuButtonType.Credits)
