@@ -21,11 +21,11 @@ public class GameEngine : MonoBehaviour
         goods.Add(0);
         goods.Add(1);
         goods.Add(0);
-        goods.Add(0);
-        prices.Add(1);
-        prices.Add(10);
-        prices.Add(25);
-        prices.Add(100);
+        goods.Add(1);
+        prices.Add(Random.Range(1, 200));
+        prices.Add(Random.Range(1, 200));
+        prices.Add(Random.Range(1, 200));
+        prices.Add(Random.Range(1, 100));
 
         for (int x = 0; x < slots.Length; x++)
         {
@@ -52,17 +52,17 @@ public class GameEngine : MonoBehaviour
     {
         //DestroyObject(id);
         //item.changeState(2);
-        if (Input.GetKeyDown(KeyCode.X))
+        if( Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) )
         {
             if (goods[item.id] >= 10)
             {
-                credits += prices[item.id] * 10 * .8F;
+                credits += Mathf.Round(prices[item.id] * 10 * .8F);//Mathf.Round( engn.prices[id] * .8f )
                 goods[item.id] -= 10;
             }
         }
         else if (goods[item.id] >= 1)
         {
-            credits += prices[item.id] * .8F;
+            credits += Mathf.Round(prices[item.id] * .8F);
             goods[item.id]--;
         }
     }
@@ -70,11 +70,11 @@ public class GameEngine : MonoBehaviour
     public void ItemClickStore(StoreItem item)
     {
         int cap = goods[1] + goods[2] + goods[3];
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            if (credits >= prices[item.id] * 10)
+            if (credits >= prices[item.id] * 10 && cap == 0 )
             {
-                credits -= prices[item.id] * 10 * .8F;
+                credits -= prices[item.id] * 10;
                 goods[item.id] += 10;
            }
         }
@@ -87,8 +87,6 @@ public class GameEngine : MonoBehaviour
 
     void Update ()
     {
-        //Debug.Log(Input.GetKeyDown(KeyCode.LeftShift));
-
         int cap = goods[1] + goods[2] + goods[3];
         ctxt.text = "Credits: " + credits + "\nCapacity: " + cap + "/10";
         if (Input.GetKeyUp(KeyCode.Escape))
