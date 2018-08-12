@@ -11,21 +11,16 @@ public class GameEngine : MonoBehaviour
     [SerializeField] public Material[] bgs;
     public TextMesh ctxt;
 
-    public float credits = 200;
-    //public int[] goods = new int[4];
-    public List<int> goods = new List<int>();
-    public List<int> prices = new List<int>();
-
 	void Start ()
     {
-        goods.Add(0);
-        goods.Add(1);
-        goods.Add(0);
-        goods.Add(1);
-        prices.Add(Random.Range(1, 200));
-        prices.Add(Random.Range(1, 200));
-        prices.Add(Random.Range(1, 200));
-        prices.Add(Random.Range(1, 100));
+        Singleton.data.goods.Add(0);
+        Singleton.data.goods.Add(1);
+        Singleton.data.goods.Add(0);
+        Singleton.data.goods.Add(1);
+        Singleton.data.prices.Add(Random.Range(1, 200));
+        Singleton.data.prices.Add(Random.Range(1, 200));
+        Singleton.data.prices.Add(Random.Range(1, 200));
+        Singleton.data.prices.Add(Random.Range(1, 100));
 
         for (int x = 0; x < slots.Length; x++)
         {
@@ -39,12 +34,12 @@ public class GameEngine : MonoBehaviour
 
     public void Leave()
     {
-        if( goods[3] > 0 )
+        if( Singleton.data.goods[3] > 0 )
         {
-            goods[3]--;
-            prices[1] = Random.Range(1, 200);
-            prices[2] = Random.Range(1, 200);
-            prices[3] = Random.Range(1, 200);
+            Singleton.data.goods[3]--;
+            Singleton.data.prices[1] = Random.Range(1, 200);
+            Singleton.data.prices[2] = Random.Range(1, 200);
+            Singleton.data.prices[3] = Random.Range(1, 200);
         }
     }
 
@@ -54,41 +49,41 @@ public class GameEngine : MonoBehaviour
         //item.changeState(2);
         if( Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) )
         {
-            if (goods[item.id] >= 10)
+            if (Singleton.data.goods[item.id] >= 10)
             {
-                credits += Mathf.Round(prices[item.id] * 10 * .8F);//Mathf.Round( engn.prices[id] * .8f )
-                goods[item.id] -= 10;
+                Singleton.data.credits += Mathf.Round(Singleton.data.prices[item.id] * 10 * .8F);
+                Singleton.data.goods[item.id] -= 10;
             }
         }
-        else if (goods[item.id] >= 1)
+        else if (Singleton.data.goods[item.id] >= 1)
         {
-            credits += Mathf.Round(prices[item.id] * .8F);
-            goods[item.id]--;
+            Singleton.data.credits += Mathf.Round(Singleton.data.prices[item.id] * .8F);
+            Singleton.data.goods[item.id]--;
         }
     }
 
     public void ItemClickStore(StoreItem item)
     {
-        int cap = goods[1] + goods[2] + goods[3];
+        int cap = Singleton.data.goods[1] + Singleton.data.goods[2] + Singleton.data.goods[3];
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            if (credits >= prices[item.id] * 10 && cap == 0 )
+            if (Singleton.data.credits >= Singleton.data.prices[item.id] * 10 && cap == 0 )
             {
-                credits -= prices[item.id] * 10;
-                goods[item.id] += 10;
+                Singleton.data.credits -= Singleton.data.prices[item.id] * 10;
+                Singleton.data.goods[item.id] += 10;
            }
         }
-        else if( credits >= prices[item.id] && cap < 10 )
+        else if( Singleton.data.credits >= Singleton.data.prices[item.id] && cap < 10 )
         {
-            credits -= prices[item.id];
-            goods[item.id]++;
+            Singleton.data.credits -= Singleton.data.prices[item.id];
+            Singleton.data.goods[item.id]++;
         }
     }
 
     void Update ()
     {
-        int cap = goods[1] + goods[2] + goods[3];
-        ctxt.text = "Credits: " + credits + "\nCapacity: " + cap + "/10";
+        int cap = Singleton.data.goods[1] + Singleton.data.goods[2] + Singleton.data.goods[3];
+        ctxt.text = "Credits: " + Singleton.data.credits + "\nCapacity: " + cap + "/10";
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainScene", LoadSceneMode.Single);

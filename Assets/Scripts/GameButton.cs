@@ -52,6 +52,8 @@ public class GameButton : MonoBehaviour
     {
         m_Renderer.material = m_OverMaterial;//m_NormalMaterial;
 
-        engn.Leave();
+        //engn.Leave();
+
+        SceneManager.LoadScene("MapScene", LoadSceneMode.Single);
     }
 }

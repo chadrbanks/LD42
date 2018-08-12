@@ -28,6 +28,6 @@ public class StoreItem : MonoBehaviour
 
     void Update()
     {
-        ctxt.text = "B: " + engn.prices[id] + "  S: " + Mathf.Round( engn.prices[id] * .8f );
+        ctxt.text = "B: " + Singleton.data.prices[id] + "  S: " + Mathf.Round( Singleton.data.prices[id] * .8f );
     }
 }

@@ -22,7 +22,12 @@ public class Singleton : MonoBehaviour
 	public ReleasePlatform platform;
 	public FloatText gft;
 
+
+    public float credits = 200;
+    public List<int> goods = new List<int>();
+    public List<int> prices = new List<int>();
     public int ship = 0;
+    public int planet = 0;
 
 	void Awake()
 	{

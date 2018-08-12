@@ -28,6 +28,6 @@ public class GameItem : MonoBehaviour
 
 	void Update ()
     {
-        ctxt.text = "Qty: " + engn.goods[id];
+        ctxt.text = "Qty: " + Singleton.data.goods[id];
 	}
 }
