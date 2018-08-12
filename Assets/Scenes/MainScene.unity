@@ -1057,7 +1057,6 @@ MonoBehaviour:
   status: 0
   platform: 0
   gft: {fileID: 114574565502109196, guid: 0231cfc3fbb644efdb72f2b8720904ca, type: 2}
-  cc: 20
 --- !u!4 &1621889332
 Transform:
   m_ObjectHideFlags: 0
@@ -1196,7 +1195,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1764905270}
-  m_Text: Pack It!
+  m_Text: Space Smuggler
   m_OffsetZ: 0
   m_CharacterSize: 0.1
   m_LineSpacing: 1
