@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class MapButton : MonoBehaviour
 {
     public int planetid;
-    public TextMesh ps;
+    public TextMesh pname;
+    public TextMesh pdesc;
 
 	void Start ()
     {
@@ -19,26 +20,30 @@ public class MapButton : MonoBehaviour
 
         if (planetid == 1)
         {
-            ps.text = "P1";
+            pname.text = "The Emerald Planet";
+            pdesc.text = "The busiest planet with the\nmost people living on it.\nThis planets population\nexploded rapidly due to all\nof the highly valued\nmaterials on it.\nWith quick growth comes\nlots of crime though.";
         }
         else if (planetid == 2)
         {
-            ps.text = "P2";
+            pname.text = "New Earth";
+            pdesc.text = "An earth like planet!";
         }
         else if (planetid == 3)
         {
-            ps.text = "P3";
+            pname.text = "Santigo 3G";
+            pdesc.text = "A very hot planet with\ntripple the Earths gravity.";
         }
         else if (planetid == 4)
         {
-            ps.text = "MISSINGNO";
+            pname.text = "MISSINGNO";
         }
     }
 
     void OnMouseExit()
     {
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0f);
-        ps.text = "";
+        pname.text = "";
+        pdesc.text = "";
     }
 
     void OnMouseDown()
