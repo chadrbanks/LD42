@@ -15,7 +15,7 @@ public class MapButton : MonoBehaviour
     void OnMouseDown()
     {
         Singleton.data.planet = planetid;
-        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("GameScene2", LoadSceneMode.Single);
     }
 
 	void Update ()
