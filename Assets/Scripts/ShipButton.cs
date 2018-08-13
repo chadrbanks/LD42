@@ -44,7 +44,7 @@ public class ShipButton : MonoBehaviour
     void OnMouseDown()
     {
         Singleton.data.ship = id;
-        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("MapScene", LoadSceneMode.Single);
     }
 
 	void Update ()
