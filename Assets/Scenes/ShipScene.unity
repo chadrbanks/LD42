@@ -1365,17 +1365,9 @@ TextMesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1898869973}
-  m_Text: 'Ship Name
+  m_Text: 'Hover over a ship
 
-    Speed
-
-    HP
-
-    Shields
-
-    Storage
-
-    Special?'
+    for more information.'
   m_OffsetZ: 0
   m_CharacterSize: 0.1
   m_LineSpacing: 1
