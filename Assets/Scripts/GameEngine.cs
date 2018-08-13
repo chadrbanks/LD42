@@ -11,6 +11,7 @@ public class GameEngine : MonoBehaviour
     [SerializeField] public Material[] bgs;
     public TextMesh pname;
     public TextMesh pdesc;
+    public TextMesh ship1, ship2;
 
 	void Start ()
     {
@@ -238,6 +239,9 @@ public class GameEngine : MonoBehaviour
     {
         int cap = Singleton.data.goods[1] + Singleton.data.goods[2] + Singleton.data.goods[3];
         //ctxt.text = "Credits: " + Singleton.data.credits + "\nCapacity: " + cap + "/10";
+        ship1.text = Singleton.data.shipname + "\nHull: " + Singleton.data.hull + " / " + Singleton.data.hullmax + "\nWeapons: " + Singleton.data.weapons + "\nSpeed: " + Singleton.data.speed;
+        ship2.text = "Capacity: " + cap + " / " + Singleton.data.capmax + "\nFuel: " + Singleton.data.goods[3] + "\nCredits: " + Singleton.data.credits + "\nQuests: 0";
+
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
