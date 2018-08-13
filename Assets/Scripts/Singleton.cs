@@ -55,9 +55,9 @@ public class Singleton : MonoBehaviour
         Singleton.data.prices = new List<int>();
 
         Singleton.data.goods.Add(0);
-        Singleton.data.goods.Add(1);
         Singleton.data.goods.Add(0);
-        Singleton.data.goods.Add(1);
+        Singleton.data.goods.Add(0);
+        Singleton.data.goods.Add(3);
         Singleton.data.prices.Add(0);
         Singleton.data.prices.Add(Random.Range(1, 200));
         Singleton.data.prices.Add(Random.Range(1, 200));
