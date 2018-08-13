@@ -74,7 +74,7 @@ public class GameEngine : MonoBehaviour
     void Update ()
     {
         int cap = Singleton.data.goods[1] + Singleton.data.goods[2] + Singleton.data.goods[3];
-        ctxt.text = "Credits: " + Singleton.data.credits + "\nCapacity: " + cap + "/10";
+        //ctxt.text = "Credits: " + Singleton.data.credits + "\nCapacity: " + cap + "/10";
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainScene", LoadSceneMode.Single);

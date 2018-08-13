@@ -24,14 +24,14 @@ public class GameButton : MonoBehaviour
 
     void Start()
     {
-        m_Renderer.material = m_NormalMaterial;
+        //m_Renderer.material = m_NormalMaterial;
     }
 
     void OnMouseOver()
     {
         if (!over)
         {
-            m_Renderer.material = m_OverMaterial;
+            //m_Renderer.material = m_OverMaterial;
         }
 
         over = true;
@@ -39,18 +39,18 @@ public class GameButton : MonoBehaviour
 
     void OnMouseExit()
     {
-        m_Renderer.material = m_NormalMaterial;
+        //m_Renderer.material = m_NormalMaterial;
         over = false;
     }
 
     void OnMouseDown()
     {
-        m_Renderer.material = m_ClickedMaterial;
+        //m_Renderer.material = m_ClickedMaterial;
     }
 
     void OnMouseUp()
     {
-        m_Renderer.material = m_OverMaterial;//m_NormalMaterial;
+        //m_Renderer.material = m_OverMaterial;//m_NormalMaterial;
 
         //engn.Leave();
 
