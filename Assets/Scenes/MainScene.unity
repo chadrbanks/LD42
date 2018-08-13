@@ -1149,8 +1149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31f16fa9c1f44073a2354fc5f2eddf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 0.8.0
-  status: 0
+  version: 0.9.0
+  status: 1
   platform: 0
   gft: {fileID: 114574565502109196, guid: 0231cfc3fbb644efdb72f2b8720904ca, type: 2}
   credits: 0
@@ -1158,6 +1158,12 @@ MonoBehaviour:
   prices: 
   ship: 0
   planet: 0
+  shipname: MISSINGNO
+  speed: 0
+  hull: 0
+  hullmax: 0
+  capmax: 0
+  weapons: 0
 --- !u!4 &1621889332
 Transform:
   m_ObjectHideFlags: 0

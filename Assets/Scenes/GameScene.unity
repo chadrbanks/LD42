@@ -167,7 +167,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 0d7fedc9f795a40bbb49997179a95069, type: 2}
   - {fileID: 2100000, guid: 105d6fd479aed4aaeb55d8c4936bb00e, type: 2}
   - {fileID: 2100000, guid: af97a7e981c394448b45b7fd3b53eb26, type: 2}
-  ctxt: {fileID: 2041572642}
+  pname: {fileID: 0}
+  pdesc: {fileID: 0}
+  ship1: {fileID: 0}
+  ship2: {fileID: 0}
 --- !u!4 &196192134 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4815507361736644, guid: c7b40876ec9a940a280ed5f06fccf6a3,
@@ -469,10 +472,10 @@ Transform:
   - {fileID: 287827125}
   - {fileID: 494611699}
   - {fileID: 2041572641}
+  - {fileID: 1793954201}
   - {fileID: 1683097740}
   - {fileID: 1541424658}
   - {fileID: 196192134}
-  - {fileID: 1793954201}
   - {fileID: 905911231}
   - {fileID: 1769500006}
   - {fileID: 782573130}
@@ -1114,7 +1117,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4815507361736644, guid: c7b40876ec9a940a280ed5f06fccf6a3, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4930179051229796, guid: c7b40876ec9a940a280ed5f06fccf6a3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1281,7 +1284,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4815507361736644, guid: c7b40876ec9a940a280ed5f06fccf6a3, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4930179051229796, guid: c7b40876ec9a940a280ed5f06fccf6a3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1545,6 +1548,12 @@ MonoBehaviour:
   prices: 
   ship: 0
   planet: 0
+  shipname: 
+  speed: 0
+  hull: 0
+  hullmax: 0
+  capmax: 0
+  weapons: 0
 --- !u!4 &1780361142
 Transform:
   m_ObjectHideFlags: 0
@@ -1595,7 +1604,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4815507361736644, guid: c7b40876ec9a940a280ed5f06fccf6a3, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4930179051229796, guid: c7b40876ec9a940a280ed5f06fccf6a3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1640,7 +1649,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 709532687}
-  m_RootOrder: 8
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!102 &1793954202
 TextMesh:

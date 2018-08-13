@@ -12,6 +12,7 @@ public class GameEngine : MonoBehaviour
     public TextMesh pname;
     public TextMesh pdesc;
     public TextMesh ship1, ship2;
+    public GameObject market, cantina, mines;
 
 	void Start ()
     {
@@ -51,6 +52,10 @@ public class GameEngine : MonoBehaviour
         }
 
         pdesc.text = "Select an action to the right.\n\nPlanet stats coming soon.";
+
+        cantina.SetActive(false);
+        market.SetActive(false);
+        mines.SetActive(false);
     }
 
     // 1 - Metal plating
@@ -97,6 +102,9 @@ public class GameEngine : MonoBehaviour
 
     public void ClickedButton( GameButtonType bt )
     {
+        cantina.SetActive(false);
+        market.SetActive(false);
+        mines.SetActive(false);
         //lg.text = "Action completed: " + bt;
         if (bt == GameButtonType.Home )
         {
@@ -107,12 +115,14 @@ public class GameEngine : MonoBehaviour
             if (Singleton.data.planet == 1)
             {
                 pname.text = "The Green Cantina";
-                pdesc.text = "Use this location to find work.";
+                pdesc.text = "";
+                cantina.SetActive(true);
             }
             else if (Singleton.data.planet == 2)
             {
-                pname.text = "New Cantina";
-                pdesc.text = "Just your regular everyday underground place for finding work.";
+                pname.text = "The Rusty Wrynn";
+                pdesc.text = "";
+                cantina.SetActive(true);
             }
             else if (Singleton.data.planet == 3)
             {
@@ -130,30 +140,33 @@ public class GameEngine : MonoBehaviour
             if (Singleton.data.planet == 1)
             {
                 pname.text = "The Green Market";
-                pdesc.text = "Market goes here.";
+                pdesc.text = "";
             }
             else if (Singleton.data.planet == 2)
             {
-                pname.text = "The Rusty Wrynn";
-                pdesc.text = "Market goes here.";
+                pname.text = "The Overground";
+                pdesc.text = "";
             }
             else if (Singleton.data.planet == 3)
             {
                 pname.text = "Sand Road";
-                pdesc.text = "Market goes here.";
+                pdesc.text = "";
             }
             else
             {
                 pname.text = "MISSINGNO";
                 pdesc.text = "Market goes here.";
             }
+
+            market.SetActive(true);
         }
-        else if (bt == GameButtonType.Mine )
+        else if (bt == GameButtonType.Mine)
         {
             if (Singleton.data.planet == 1)
             {
                 pname.text = "The Green Mines";
-                pdesc.text = "Use this location to mine.";
+                pdesc.text = "";
+                mines.SetActive(true);
             }
             else if (Singleton.data.planet == 2)
             {
@@ -163,12 +176,48 @@ public class GameEngine : MonoBehaviour
             else if (Singleton.data.planet == 3)
             {
                 pname.text = "Santigo Mines";
-                pdesc.text = "Use this location to mine.";
+                pdesc.text = "";
+                mines.SetActive(true);
             }
             else
             {
                 pname.text = "MISSINGNO";
                 pdesc.text = "Description.";
+            }
+        }
+        else if (bt == GameButtonType.Mine2)
+        {
+            mines.SetActive(true);
+
+            if (Singleton.data.goods[3] > 0)
+            {
+                Singleton.data.goods[3]--;
+
+                if (Singleton.data.planet == 1)
+                {
+                    float c = Random.Range(50, 250);
+                    Singleton.data.credits += c;
+                    pdesc.text = "You mined some material worth " + c + " credits!";
+                }
+                else if (Singleton.data.planet == 2)
+                {
+                    //
+                }
+                else if (Singleton.data.planet == 3)
+                {
+                    float c = Random.Range(50, 250);
+                    Singleton.data.credits += c;
+                    pdesc.text = "You mined some material worth " + c + " credits!";
+                }
+                else
+                {
+                    pname.text = "MISSINGNO";
+                    pdesc.text = "Description.";
+                }
+            }
+            else
+            {
+                pdesc.text = "You do not have enough fuel to go mine.";
             }
         }
         else if (bt == GameButtonType.Explore )

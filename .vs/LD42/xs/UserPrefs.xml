@@ -1,13 +1,14 @@
 ﻿<Properties StartupConfiguration="{AF94FD97-D6FE-F751-137F-8C62BAC10A34}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ShipButton.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameEngine.cs">
     <Files>
-      <File FileName="Assets/Scripts/Singleton.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ShipButton.cs" Line="16" Column="23" />
+      <File FileName="Assets/Scripts/Singleton.cs" Line="60" Column="35" />
+      <File FileName="Assets/Scripts/ShipButton.cs" Line="52" Column="13" />
       <File FileName="Assets/Scripts/MapButton.cs" Line="34" Column="165" />
-      <File FileName="Assets/Scripts/StoreItem.cs" Line="7" Column="21" />
-      <File FileName="Assets/Scripts/GameEngine.cs" Line="242" Column="55" />
+      <File FileName="Assets/Scripts/GameEngine.cs" Line="21" Column="1" />
       <File FileName="Assets/Scripts/GameButton.cs" Line="58" Column="14" />
+      <File FileName="Assets/Scripts/GameItem.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/StoreItem.cs" Line="7" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

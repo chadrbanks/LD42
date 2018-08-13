@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public enum GameButtonType
 {
-    Home, Cantina, Market, Mine, Explore, Leave
+    Home, Cantina, Market, Mine, Explore, Leave, Mine2, Quest
 }
 
 public class GameButton : MonoBehaviour
