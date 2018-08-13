@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public enum GameButtonType
 {
-    Leave
+    Home, Cantina, Market, Mine, Explore, Leave
 }
 
 public class GameButton : MonoBehaviour
@@ -45,15 +45,21 @@ public class GameButton : MonoBehaviour
 
     void OnMouseDown()
     {
-        //m_Renderer.material = m_ClickedMaterial;
+        
     }
 
     void OnMouseUp()
     {
-        //m_Renderer.material = m_OverMaterial;//m_NormalMaterial;
-
-        //engn.Leave();
-
-        SceneManager.LoadScene("MapScene", LoadSceneMode.Single);
+        if (bt == GameButtonType.Leave)
+        {
+            if( engn.Leave( ) )
+            {
+                SceneManager.LoadScene("MapScene", LoadSceneMode.Single);
+            }
+        }
+        else
+        {
+            engn.ClickedButton(bt);
+        }
     }
 }

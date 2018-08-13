@@ -31,9 +31,9 @@ public class MapButton : MonoBehaviour
         else if (planetid == 3)
         {
             pname.text = "Santigo 3G";
-            pdesc.text = "A very hot planet with\ntripple the Earths gravity.";
+            pdesc.text = "A very hot planet with\ntripple the Earths gravity.\nAside from the space port\nabove the planet, there is\nnot a lot of activity on the\nsurface other than mining.";
         }
-        else if (planetid == 4)
+        else
         {
             pname.text = "MISSINGNO";
         }
