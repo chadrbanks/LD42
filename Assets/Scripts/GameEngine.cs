@@ -49,6 +49,8 @@ public class GameEngine : MonoBehaviour
             pname.text = "MISSINGNO";
             //pdesc.text = "Description.";
         }
+
+        pdesc.text = "Select an action to the right.\n\nPlanet stats coming soon.";
     }
 
     // 1 - Metal plating
