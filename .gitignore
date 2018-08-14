@@ -37,3 +37,7 @@ sysinfo.txt
 Builds/
 
 \.DS_Store
+
+Library/
+
+Temp/

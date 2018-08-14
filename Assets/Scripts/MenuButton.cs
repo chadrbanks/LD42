@@ -59,12 +59,12 @@ public class MenuButton : MonoBehaviour
 			SceneManager.LoadScene ("ShipScene", LoadSceneMode.Single);
 		}
 		else if (bt == MenuButtonType.Credits)
-		{
-		    engn.ToggleCredits (false);
+        {
+            SceneManager.LoadScene("CreditScene", LoadSceneMode.Single);
 		}
 		else if (bt == MenuButtonType.Back)
-		{
-			engn.ToggleCredits (true);
+        {
+            SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
 		}
 		else if (bt == MenuButtonType.Quit)
 		{
