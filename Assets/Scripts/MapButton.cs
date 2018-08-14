@@ -8,6 +8,7 @@ public class MapButton : MonoBehaviour
     public int planetid;
     public TextMesh pname;
     public TextMesh pdesc;
+    public MapHandler mh;
 
 	void Start ()
     {
@@ -16,6 +17,8 @@ public class MapButton : MonoBehaviour
 
     void OnMouseOver()
     {
+        mh.setHeader(planetid);
+
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -1.0f);
 
         if (planetid == 1)
@@ -48,7 +51,36 @@ public class MapButton : MonoBehaviour
 
     void OnMouseDown()
     {
-        Singleton.data.planet = planetid;
+        if (Singleton.data.plyr.planet == 1)
+        {
+            Singleton.data.prices[0] = 0;
+            Singleton.data.prices[1] = Random.Range(1, 200);
+            Singleton.data.prices[2] = Random.Range(1, 200);
+            Singleton.data.prices[3] = Random.Range(150, 200);
+        }
+        else if (Singleton.data.plyr.planet == 2)
+        {
+            Singleton.data.prices[0] = 0;
+            Singleton.data.prices[1] = Random.Range(1, 200);
+            Singleton.data.prices[2] = Random.Range(1, 50);
+            Singleton.data.prices[3] = Random.Range(150, 200);
+        }
+        else if (Singleton.data.plyr.planet == 3)
+        {
+            Singleton.data.prices[0] = 0;
+            Singleton.data.prices[1] = Random.Range(50, 150);
+            Singleton.data.prices[2] = Random.Range(100, 200);
+            Singleton.data.prices[3] = Random.Range(1, 50);
+        }
+        else
+        {
+            Singleton.data.prices[0] = 0;
+            Singleton.data.prices[1] = Random.Range(1, 200);
+            Singleton.data.prices[2] = Random.Range(1, 200);
+            Singleton.data.prices[3] = Random.Range(1, 200);
+        }
+
+        Singleton.data.plyr.planet = planetid;
         SceneManager.LoadScene("GameScene2", LoadSceneMode.Single);
     }
 

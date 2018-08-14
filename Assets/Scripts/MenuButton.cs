@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public enum MenuButtonType
 {
-	Start, Quit, Credits, Back
+	Start, Quit, Credits, Back, Load
 }
 
 public class MenuButton : MonoBehaviour
@@ -57,11 +57,16 @@ public class MenuButton : MonoBehaviour
             Singleton.data.restartGame();
 
 			SceneManager.LoadScene ("ShipScene", LoadSceneMode.Single);
-		}
-		else if (bt == MenuButtonType.Credits)
+        }
+        else if (bt == MenuButtonType.Load)
+        {
+            Singleton.data.LoadGame();
+            SceneManager.LoadScene("GameScene2", LoadSceneMode.Single);
+        }
+        else if (bt == MenuButtonType.Credits)
         {
             SceneManager.LoadScene("CreditScene", LoadSceneMode.Single);
-		}
+        }
 		else if (bt == MenuButtonType.Back)
         {
             SceneManager.LoadScene("MainScene", LoadSceneMode.Single);

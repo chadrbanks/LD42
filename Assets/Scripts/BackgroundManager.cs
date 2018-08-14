@@ -9,6 +9,6 @@ public class BackgroundManager : MonoBehaviour
 
 	void Start ()
     {
-        m_Renderer.material = bgs[ Singleton.data.planet ];
+        m_Renderer.material = bgs[ Singleton.data.plyr.planet ];
 	}
 }

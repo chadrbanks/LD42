@@ -1029,7 +1029,7 @@ TextMesh:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2120444870}
   m_Text: "Created for Ludum Dare 42!\n\nCreated by:\n     Baron Pollak\n     Chad
-    R. Banks\n\nSpecial Thanks:\n     David Audet\n     NASA\n     picketfence14"
+    R. Banks\n\nSpecial Thanks:\n     David Audet\n     \"NASA\"\n     picketfence14"
   m_OffsetZ: 0
   m_CharacterSize: 0.1
   m_LineSpacing: 1

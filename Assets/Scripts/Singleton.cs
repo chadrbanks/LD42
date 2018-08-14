@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public enum ReleasePlatform
 {
@@ -22,14 +25,10 @@ public class Singleton : MonoBehaviour
 	public ReleasePlatform platform;
 	public FloatText gft;
 
-    public float credits = 0;
     public List<int> goods = new List<int>();
     public List<int> prices = new List<int>();
-    public int ship = 0;
-    public int planet = 0;
 
-    public string shipname;
-    public int speed, hull, hullmax, capmax, weapons;//, cap;
+    public PlayerData plyr;
 
 	void Awake()
 	{
@@ -47,20 +46,68 @@ public class Singleton : MonoBehaviour
 
     public void restartGame()
     {
-        Singleton.data.ship = 0;
-        Singleton.data.planet = 1;
-        Singleton.data.credits = 200;
+        Singleton.data.plyr.ship = 0;
+        Singleton.data.plyr.planet = 1;
+        Singleton.data.plyr.credits = 300;
 
         Singleton.data.goods = new List<int>();
         Singleton.data.prices = new List<int>();
 
-        Singleton.data.goods.Add(0);
-        Singleton.data.goods.Add(0);
-        Singleton.data.goods.Add(0);
-        Singleton.data.goods.Add(3);
-        Singleton.data.prices.Add(0);
-        Singleton.data.prices.Add(Random.Range(1, 200));
-        Singleton.data.prices.Add(Random.Range(1, 200));
-        Singleton.data.prices.Add(Random.Range(1, 100));
+        //Singleton.data.goods.Add(0);
+        //Singleton.data.goods.Add(0);
+        //Singleton.data.goods.Add(0);
+        //Singleton.data.goods.Add(3);
+        //Singleton.data.prices.Add(0);
+        //Singleton.data.prices.Add(UnityEngine.Random.Range(1, 200));
+        //Singleton.data.prices.Add(UnityEngine.Random.Range(1, 200));
+        //Singleton.data.prices.Add(UnityEngine.Random.Range(1, 100));
     }
+
+    public void SaveGame()
+    {
+        string destination = Application.persistentDataPath + "/save.dat";
+        FileStream file;
+
+        if (File.Exists(destination)) file = File.OpenWrite(destination);
+        else file = File.Create(destination);
+
+        BinaryFormatter bf = new BinaryFormatter();
+        bf.Serialize(file, Singleton.data.plyr);
+        file.Close();
+    }
+
+    public void LoadGame()
+    {
+        string destination = Application.persistentDataPath + "/save.dat";
+        FileStream file;
+
+        if (File.Exists(destination)) file = File.OpenRead(destination);
+        else
+        {
+            Debug.Log("File not found");
+            return;
+        }
+
+        BinaryFormatter bf = new BinaryFormatter();
+        PlayerData d = (PlayerData)bf.Deserialize(file);
+        file.Close();
+
+        Singleton.data.plyr = d;
+    }
+
+    void OnDestroy()
+    {
+        SaveGame();
+    }
+}
+
+
+[Serializable]
+public class PlayerData
+{
+    public int ship = 0;
+    public int planet = 0;
+    public float credits = 0;
+    public string shipname;
+    public int speed, hull, hullmax, capmax, weapons;
 }
