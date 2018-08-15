@@ -49,28 +49,39 @@ public class MapButton : MonoBehaviour
         pdesc.text = "";
     }
 
+    // 1 - Electronics
+    // 1 - Crystals
+    // 1 - Fuel
+    // 1 - MedPod
+    // 1 - Drugs
     void OnMouseDown()
     {
-        if (Singleton.data.plyr.planet == 1)
+        if (planetid == 1) // Green
         {
             Singleton.data.prices[0] = 0;
-            Singleton.data.prices[1] = Random.Range(1, 200);
-            Singleton.data.prices[2] = Random.Range(1, 200);
-            Singleton.data.prices[3] = Random.Range(150, 200);
+            Singleton.data.prices[1] = Random.Range(5, 20);
+            Singleton.data.prices[2] = Random.Range(50, 150);
+            Singleton.data.prices[3] = Random.Range(90, 150);
+            Singleton.data.prices[4] = Random.Range(900, 1500);
+            Singleton.data.prices[5] = Random.Range(1, 100);
         }
-        else if (Singleton.data.plyr.planet == 2)
+        else if (planetid == 2) // Blue
         {
             Singleton.data.prices[0] = 0;
-            Singleton.data.prices[1] = Random.Range(1, 200);
-            Singleton.data.prices[2] = Random.Range(1, 50);
+            Singleton.data.prices[1] = Random.Range(1, 10);
+            Singleton.data.prices[2] = Random.Range(250, 400);
             Singleton.data.prices[3] = Random.Range(150, 200);
+            Singleton.data.prices[4] = Random.Range(750, 1000);
+            Singleton.data.prices[5] = Random.Range(0, 1);
         }
-        else if (Singleton.data.plyr.planet == 3)
+        else if (planetid == 3) // Red
         {
             Singleton.data.prices[0] = 0;
             Singleton.data.prices[1] = Random.Range(50, 150);
-            Singleton.data.prices[2] = Random.Range(100, 200);
-            Singleton.data.prices[3] = Random.Range(1, 50);
+            Singleton.data.prices[2] = Random.Range(100, 250);
+            Singleton.data.prices[3] = Random.Range(50, 100);
+            Singleton.data.prices[4] = Random.Range(750, 1500);
+            Singleton.data.prices[5] = Random.Range(50, 100);
         }
         else
         {
@@ -78,6 +89,8 @@ public class MapButton : MonoBehaviour
             Singleton.data.prices[1] = Random.Range(1, 200);
             Singleton.data.prices[2] = Random.Range(1, 200);
             Singleton.data.prices[3] = Random.Range(1, 200);
+            Singleton.data.prices[4] = Random.Range(1, 200);
+            Singleton.data.prices[5] = Random.Range(1, 200);
         }
 
         Singleton.data.plyr.planet = planetid;

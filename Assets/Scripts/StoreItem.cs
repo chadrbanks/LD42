@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class StoreItem : MonoBehaviour
 {
-    GameEngine engn;
-    [SerializeField] private Renderer m_Renderer;
-    public TextMesh ctxt;
+    //GameEngine engn;
+    public TextMesh  bstxt, qtytxt;
 
     public int id = 1;
 
@@ -17,17 +16,18 @@ public class StoreItem : MonoBehaviour
 
     void OnMouseDown()
     {
-        engn.ItemClickStore(this);
+        //engn.ItemClickStore(this);
     }
 
     public void Setup(GameEngine ge)
     {
-        engn = ge;
-        m_Renderer.material = engn.bgs[id];
+        //engn = ge;
+        //m_Renderer.material = engn.bgs[id];
     }
 
     void Update()
     {
-        ctxt.text = "B: " + Singleton.data.prices[id] + "  S: " + Mathf.Round( Singleton.data.prices[id] * .8f );
+        bstxt.text = "B: " + Singleton.data.prices[id] + "  S: " + Mathf.Round(Singleton.data.prices[id] * .8f);
+        qtytxt.text = "" + Singleton.data.plyr.goods[id];
     }
 }

@@ -25,7 +25,6 @@ public class Singleton : MonoBehaviour
 	public ReleasePlatform platform;
 	public FloatText gft;
 
-    public List<int> goods = new List<int>();
     public List<int> prices = new List<int>();
 
     public PlayerData plyr;
@@ -46,21 +45,27 @@ public class Singleton : MonoBehaviour
 
     public void restartGame()
     {
+        Singleton.data.plyr = new PlayerData();
+
         Singleton.data.plyr.ship = 0;
         Singleton.data.plyr.planet = 1;
         Singleton.data.plyr.credits = 300;
 
-        Singleton.data.goods = new List<int>();
-        Singleton.data.prices = new List<int>();
+        Singleton.data.plyr.goods = new List<int>();
+        Singleton.data.plyr.goods.Add(0);
+        Singleton.data.plyr.goods.Add(0);
+        Singleton.data.plyr.goods.Add(0);
+        Singleton.data.plyr.goods.Add(3);
+        Singleton.data.plyr.goods.Add(0);
+        Singleton.data.plyr.goods.Add(0);
 
-        //Singleton.data.goods.Add(0);
-        //Singleton.data.goods.Add(0);
-        //Singleton.data.goods.Add(0);
-        //Singleton.data.goods.Add(3);
-        //Singleton.data.prices.Add(0);
-        //Singleton.data.prices.Add(UnityEngine.Random.Range(1, 200));
-        //Singleton.data.prices.Add(UnityEngine.Random.Range(1, 200));
-        //Singleton.data.prices.Add(UnityEngine.Random.Range(1, 100));
+        Singleton.data.prices = new List<int>();
+        Singleton.data.prices.Add(0);
+        Singleton.data.prices.Add(UnityEngine.Random.Range(1, 200));
+        Singleton.data.prices.Add(UnityEngine.Random.Range(1, 200));
+        Singleton.data.prices.Add(UnityEngine.Random.Range(1, 200));
+        Singleton.data.prices.Add(UnityEngine.Random.Range(1, 200));
+        Singleton.data.prices.Add(UnityEngine.Random.Range(1, 200));
     }
 
     public void SaveGame()
@@ -105,9 +110,11 @@ public class Singleton : MonoBehaviour
 [Serializable]
 public class PlayerData
 {
+    public string shipname;
+
     public int ship = 0;
     public int planet = 0;
     public float credits = 0;
-    public string shipname;
+    public List<int> goods = new List<int>();
     public int speed, hull, hullmax, capmax, weapons;
 }

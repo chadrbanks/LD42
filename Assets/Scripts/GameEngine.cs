@@ -5,24 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class GameEngine : MonoBehaviour
 {
-    public GameItem[] slots;
-    public StoreItem[] stores;
+    public StoreButton[] marketbuttons;
     //public AudioSource failure, mainsong;
     [SerializeField] public Material[] bgs;
     public TextMesh pname;
     public TextMesh pdesc;
     public TextMesh ship1, ship2;
     public GameObject market, cantina, mines;
+    public GameObject[] cantinappl;
 
 	void Start ()
     {
-        for (int x = 0; x < slots.Length; x++)
+        for (int x = 0; x < marketbuttons.Length; x++)
         {
-            slots[x].Setup(this);
+            marketbuttons[x].Setup(this);
         }
-        for (int x = 0; x < stores.Length; x++)
+
+        for (int x = 0; x < cantinappl.Length; x++)
         {
-            stores[x].Setup(this);
+            cantinappl[x].SetActive(false);
         }
 
         SetupPlanet();
@@ -30,6 +31,8 @@ public class GameEngine : MonoBehaviour
 
     public void SetupPlanet()
     {
+        cantinappl[ Singleton.data.plyr.planet-1 ].SetActive( true );
+
         if (Singleton.data.plyr.planet == 1)
         {
             pname.text = "The Emerald Planet";
@@ -58,15 +61,11 @@ public class GameEngine : MonoBehaviour
         mines.SetActive(false);
     }
 
-    // 1 - Metal plating
-    // 2 - Weapons
-    // 3 - Fuel
-
     public bool Leave()
     {
-        if( Singleton.data.goods[3] > 0 )
+        if( Singleton.data.plyr.goods[3] > 0 )
         {
-            Singleton.data.goods[3]--;
+            Singleton.data.plyr.goods[3]--;
 
             return true;
         }
@@ -186,15 +185,29 @@ public class GameEngine : MonoBehaviour
         {
             mines.SetActive(true);
 
-            if (Singleton.data.goods[3] > 0)
+            if (Singleton.data.plyr.goods[3] > 0)
             {
-                Singleton.data.goods[3]--;
+                Singleton.data.plyr.goods[3]--;
 
                 if (Singleton.data.plyr.planet == 1)
                 {
-                    float c = Random.Range(50, 250);
-                    Singleton.data.plyr.credits += c;
-                    pdesc.text = "You mined some material worth " + c + " credits!";
+                    float r = Random.Range(1, 100);
+
+                    if( r < 25 )
+                    {
+                        pdesc.text = "You were unable to find anything!";
+                    }
+                    else if (r < 80)
+                    {
+                        float c = Random.Range(1, 250);
+                        Singleton.data.plyr.credits += c;
+                        pdesc.text = "You mined some material worth " + c + " credits!";
+                    }
+                    else
+                    {
+                        Singleton.data.plyr.goods[2]++;
+                        pdesc.text = "You mined some green crystal!";
+                    }
                 }
                 else if (Singleton.data.plyr.planet == 2)
                 {
@@ -202,9 +215,23 @@ public class GameEngine : MonoBehaviour
                 }
                 else if (Singleton.data.plyr.planet == 3)
                 {
-                    float c = Random.Range(50, 250);
-                    Singleton.data.plyr.credits += c;
-                    pdesc.text = "You mined some material worth " + c + " credits!";
+                    float r = Random.Range(1, 100);
+
+                    if (r < 25)
+                    {
+                        pdesc.text = "You were unable to find anything!";
+                    }
+                    else if (r < 80)
+                    {
+                        float c = Random.Range(1, 250);
+                        Singleton.data.plyr.credits += c;
+                        pdesc.text = "You mined some material worth " + c + " credits!";
+                    }
+                    else
+                    {
+                        Singleton.data.plyr.goods[3]++;
+                        pdesc.text = "You struck oil, the fuel has been added to your cargo!";
+                    }
                 }
                 else
                 {
@@ -222,7 +249,7 @@ public class GameEngine : MonoBehaviour
             if (Singleton.data.plyr.planet == 1)
             {
                 pname.text = "The Green Planet";
-                pdesc.text = "Use this location to explore.";
+                pdesc.text = "Sorry, you cannot yet explore this planet.";
             }
             else if (Singleton.data.plyr.planet == 2)
             {
@@ -232,7 +259,7 @@ public class GameEngine : MonoBehaviour
             else if (Singleton.data.plyr.planet == 3)
             {
                 pname.text = "Santigo 3G";
-                pdesc.text = "Use this location to explore.";
+                pdesc.text = "Sorry, you cannot yet explore this planet.";
             }
             else
             {
@@ -246,49 +273,54 @@ public class GameEngine : MonoBehaviour
         }
     }
 
-    public void ItemClickInventory(GameItem item)
+    public int getCapacityUse()
     {
-        //DestroyObject(id);
-        //item.changeState(2);
-        if( Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) )
-        {
-            if (Singleton.data.goods[item.id] >= 10)
-            {
-                Singleton.data.plyr.credits += Mathf.Round(Singleton.data.prices[item.id] * 10 * .8F);
-                Singleton.data.goods[item.id] -= 10;
-            }
-        }
-        else if (Singleton.data.goods[item.id] >= 1)
-        {
-            Singleton.data.plyr.credits += Mathf.Round(Singleton.data.prices[item.id] * .8F);
-            Singleton.data.goods[item.id]--;
-        }
+        return Singleton.data.plyr.goods[1] + Singleton.data.plyr.goods[2] + Singleton.data.plyr.goods[3] + Singleton.data.plyr.goods[4] + Singleton.data.plyr.goods[5];
     }
 
-    public void ItemClickStore(StoreItem item)
+    public void MarketClick( StoreButton item, bool buy )
     {
-        int cap = Singleton.data.goods[1] + Singleton.data.goods[2] + Singleton.data.goods[3];
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if( buy )
         {
-            if (Singleton.data.plyr.credits >= Singleton.data.prices[item.id] * 10 && (Singleton.data.plyr.capmax - cap) >= 10 )
+            int cap = getCapacityUse();
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
-                Singleton.data.plyr.credits -= Singleton.data.prices[item.id] * 10;
-                Singleton.data.goods[item.id] += 10;
-           }
+                if (Singleton.data.plyr.credits >= Singleton.data.prices[item.id] * 10 && (Singleton.data.plyr.capmax - cap) >= 10)
+                {
+                    Singleton.data.plyr.credits -= Singleton.data.prices[item.id] * 10;
+                    Singleton.data.plyr.goods[item.id] += 10;
+                }
+            }
+            else if (Singleton.data.plyr.credits >= Singleton.data.prices[item.id] && cap < Singleton.data.plyr.capmax)
+            {
+                Singleton.data.plyr.credits -= Singleton.data.prices[item.id];
+                Singleton.data.plyr.goods[item.id]++;
+            }
         }
-        else if( Singleton.data.plyr.credits >= Singleton.data.prices[item.id] && cap < Singleton.data.plyr.capmax )
+        else
         {
-            Singleton.data.plyr.credits -= Singleton.data.prices[item.id];
-            Singleton.data.goods[item.id]++;
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            {
+                if (Singleton.data.plyr.goods[item.id] >= 10)
+                {
+                    Singleton.data.plyr.credits += Mathf.Round(Singleton.data.prices[item.id] * 10 * .8F);
+                    Singleton.data.plyr.goods[item.id] -= 10;
+                }
+            }
+            else if (Singleton.data.plyr.goods[item.id] >= 1)
+            {
+                Singleton.data.plyr.credits += Mathf.Round(Singleton.data.prices[item.id] * .8F);
+                Singleton.data.plyr.goods[item.id]--;
+            }
         }
     }
 
     void Update ()
     {
-        int cap = Singleton.data.goods[1] + Singleton.data.goods[2] + Singleton.data.goods[3];
-        //ctxt.text = "Credits: " + Singleton.data.credits + "\nCapacity: " + cap + "/10";
+        int cap = getCapacityUse();
+
         ship1.text = Singleton.data.plyr.shipname + "\nHull: " + Singleton.data.plyr.hull + " / " + Singleton.data.plyr.hullmax + "\nWeapons: " + Singleton.data.plyr.weapons + "\nSpeed: " + Singleton.data.plyr.speed;
-        ship2.text = "Capacity: " + cap + " / " + Singleton.data.plyr.capmax + "\nFuel: " + Singleton.data.goods[3] + "\nCredits: " + Singleton.data.plyr.credits + "\nQuests: 0";
+        ship2.text = "Capacity: " + cap + " / " + Singleton.data.plyr.capmax + "\nFuel: " + Singleton.data.plyr.goods[3] + "\nCredits: " + Singleton.data.plyr.credits + "\nQuests: 0";
 
         if (Input.GetKeyUp(KeyCode.Escape))
         {
