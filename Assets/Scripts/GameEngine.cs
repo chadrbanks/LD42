@@ -6,11 +6,10 @@ using UnityEngine.SceneManagement;
 public class GameEngine : MonoBehaviour
 {
     public StoreButton[] marketbuttons;
-    //public AudioSource failure, mainsong;
     [SerializeField] public Material[] bgs;
     public TextMesh pname;
     public TextMesh pdesc;
-    public TextMesh ship1, ship2;
+    public TextMesh ship1, ship2, cantext;
     public GameObject market, cantina, mines;
     public GameObject[] cantinappl;
 
@@ -38,16 +37,19 @@ public class GameEngine : MonoBehaviour
         if (Singleton.data.plyr.planet == 1)
         {
             pname.text = "The Emerald Planet";
+            cantext.text = "Ever since the Space Force started coming around here, it has been hard to find shipments of drugs.\nI have pleanty of sentry guns though.\nWanna trade one for one?";
             //pdesc.text = "The busiest planet with the\nmost people living on it.\nThis planets population\nexploded rapidly due to all\nof the highly valued\nmaterials on it.\nWith quick growth comes\nlots of crime though.";
         }
         else if (Singleton.data.plyr.planet == 2)
         {
             pname.text = "New Earth";
+            cantext.text = "Hey Friend!\n\nI am working on a special project that I can't talk much about.\nBut you know that every ship has an AI assistant pilot on board right?\nWell fun fact, if you destroy a ship, Pirate or Space Force,\nyour AI will automatically download a copy of the one on-board the enemies ship.\nBrings those to me and I can reward you.\nWhat do you say, think we can be friends?";
             //pdesc.text = "An earth like planet!";
         }
         else if (Singleton.data.plyr.planet == 3)
         {
             pname.text = "Santigo 3G";
+            cantext.text = "I need medi-pods down here. I have a lot of good workers getting hurt in this horrible work environmnet.\nI can't really pay much but we have tons of skilled workers and spare parts.\nHow about a free ship repair and upgrade for every medi-pod you bring me?";
             //pdesc.text = "A very hot planet with\ntripple the Earths gravity. Aside from the space port above the planet, there is not a lot of activity on the surface other than mining.";
         }
         else
@@ -88,22 +90,22 @@ public class GameEngine : MonoBehaviour
         }
         else if (bt == GameButtonType.Cantina)
         {
+            cantina.SetActive(true);
+
             if (Singleton.data.plyr.planet == 1)
             {
                 pname.text = "The Green Cantina";
                 pdesc.text = "";
-                cantina.SetActive(true);
             }
             else if (Singleton.data.plyr.planet == 2)
             {
                 pname.text = "The Rusty Wrynn";
                 pdesc.text = "";
-                cantina.SetActive(true);
             }
             else if (Singleton.data.plyr.planet == 3)
             {
                 pname.text = "Santigo Cantigo";
-                pdesc.text = "There are no cantinas on this planet, it is not a great place to be.";
+                pdesc.text = "";
             }
             else
             {
@@ -157,15 +159,75 @@ public class GameEngine : MonoBehaviour
 
             if (Singleton.data.plyr.planet == 1)
             {
-                // YES
+                // if drugs give guns
+                if (Singleton.data.plyr.goods[5] > 0)
+                {
+                    Singleton.data.plyr.goods[1]++;
+                    Singleton.data.plyr.goods[5]--;
+
+                    cantext.text = "Thank you, here is the sentry gun as promised.";
+                }
+                else
+                {
+                    cantext.text = "You have no drugs at all, why are you wasting my time?";
+                }
             }
             else if (Singleton.data.plyr.planet == 2)
             {
-                // YES
+                // if ai give reward
+                if( Singleton.data.plyr.aicore > 0 )
+                {
+                    Singleton.data.plyr.aicore--;
+                    Singleton.data.plyr.aicomp++;
+
+                    int reward = (200 * Singleton.data.plyr.aicomp);
+                    Singleton.data.plyr.credits += reward;
+
+                    if( Singleton.data.plyr.aicomp == 20 )
+                    {
+                        cantext.text = "Thanks for all the work you have been doing. Here is a key to my projects secret location!";
+                    }
+                    else
+                    {
+                        cantext.text = "Nice work! Here is " + reward + " credits, come back and it will be more next time!";
+                    }
+                }
+                else
+                {
+                    cantext.text = "You have no cores, please come back after you aquire some!";
+                }
             }
             else if (Singleton.data.plyr.planet == 3)
             {
-                // NO
+                if( Singleton.data.plyr.goods[4] > 0 )
+                {
+                    Singleton.data.plyr.goods[4]--;
+
+                    int roll = Random.Range(1, 100);
+                    if( roll < 25 )
+                    {
+                        Singleton.data.plyr.weapons++;
+                    }
+                    else if (roll < 50)
+                    {
+                        Singleton.data.plyr.hullmax++;
+                        Singleton.data.plyr.hull++;
+                    }
+                    else if (roll < 75)
+                    {
+                        Singleton.data.plyr.capmax++;
+                    }
+                    else
+                    {
+                        Singleton.data.plyr.speed++;
+                    }
+
+                    cantext.text = "Thank you, enjoy your ship upgrade!";
+                }
+                else
+                {
+                    cantext.text = "You have no medi-pods, come back when you are serious!";
+                }
             }
             else
             {
@@ -362,7 +424,7 @@ public class GameEngine : MonoBehaviour
         int cap = getCapacityUse();
 
         ship1.text = Singleton.data.plyr.shipname + "\nHull: " + Singleton.data.plyr.hull + " / " + Singleton.data.plyr.hullmax + "\nWeapons: " + Singleton.data.plyr.weapons + "\nSpeed: " + Singleton.data.plyr.speed;
-        ship2.text = "Capacity: " + cap + " / " + Singleton.data.plyr.capmax + "\nFuel: " + Singleton.data.plyr.goods[3] + "\nCredits: " + Singleton.data.plyr.credits + "\nQuests: 0";
+        ship2.text = "Capacity: " + cap + " / " + Singleton.data.plyr.capmax + "\nFuel: " + Singleton.data.plyr.goods[3] + "\nCredits: " + Singleton.data.plyr.credits;// + "\nQuests: 0";
 
         if (Input.GetKeyUp(KeyCode.Escape))
         {

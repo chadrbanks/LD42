@@ -7,6 +7,8 @@ public class ShipButton : MonoBehaviour
 {
     public int id;
     public TextMesh ss;
+    public AudioSource hover;
+    bool play = true;
 
 	void Start ()
     {
@@ -15,6 +17,12 @@ public class ShipButton : MonoBehaviour
 
     void OnMouseOver()
     {
+        if( play )
+        {
+            hover.Play();
+            play = false;
+        }
+
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 9.0f);
 
         if (id == 1)
@@ -39,10 +47,13 @@ public class ShipButton : MonoBehaviour
     {
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 10.0f);
         ss.text = "";
+        play = true;
     }
 
     void OnMouseDown()
     {
+        Singleton.data.click.Play();
+
         if (id == 1)
         {
             Singleton.data.plyr.shipname = "B15 Defender";

@@ -10,6 +10,9 @@ public class MapButton : MonoBehaviour
     public TextMesh pdesc;
     public MapHandler mh;
 
+    public AudioSource hover;
+    bool play = true;
+
 	void Start ()
     {
 		
@@ -17,6 +20,12 @@ public class MapButton : MonoBehaviour
 
     void OnMouseOver()
     {
+        if (play)
+        {
+            hover.Play();
+            play = false;
+        }
+
         mh.setHeader(planetid);
 
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -1.0f);
@@ -47,15 +56,17 @@ public class MapButton : MonoBehaviour
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0f);
         pname.text = "";
         pdesc.text = "";
+        play = true;
     }
 
-    // 1 - Electronics
-    // 1 - Crystals
-    // 1 - Fuel
-    // 1 - MedPod
-    // 1 - Drugs
+    // 1 - Metal
+    // 2 - Crystals
+    // 3 - Fuel
+    // 4 - MedPod
+    // 5 - Drugs
     void OnMouseDown()
     {
+        Singleton.data.shipsound.Play();
         if (planetid == 1) // Green
         {
             Singleton.data.prices[0] = 0;
@@ -63,7 +74,7 @@ public class MapButton : MonoBehaviour
             Singleton.data.prices[2] = Random.Range(50, 150);
             Singleton.data.prices[3] = Random.Range(90, 150);
             Singleton.data.prices[4] = Random.Range(900, 1500);
-            Singleton.data.prices[5] = Random.Range(1, 100);
+            Singleton.data.prices[5] = Random.Range(50, 100);
         }
         else if (planetid == 2) // Blue
         {
@@ -72,7 +83,7 @@ public class MapButton : MonoBehaviour
             Singleton.data.prices[2] = Random.Range(250, 400);
             Singleton.data.prices[3] = Random.Range(150, 200);
             Singleton.data.prices[4] = Random.Range(750, 1000);
-            Singleton.data.prices[5] = Random.Range(0, 1);
+            Singleton.data.prices[5] = Random.Range(100, 200);
         }
         else if (planetid == 3) // Red
         {
@@ -81,7 +92,7 @@ public class MapButton : MonoBehaviour
             Singleton.data.prices[2] = Random.Range(100, 250);
             Singleton.data.prices[3] = Random.Range(50, 100);
             Singleton.data.prices[4] = Random.Range(750, 1500);
-            Singleton.data.prices[5] = Random.Range(50, 100);
+            Singleton.data.prices[5] = Random.Range(10, 100);
         }
         else
         {

@@ -20,7 +20,10 @@ public class MenuButton : MonoBehaviour
 	[SerializeField] private Material m_ClickedMaterial;
 	[SerializeField] private Renderer m_Renderer;
 
-	bool over = false;
+    bool over = false;
+
+    public AudioSource hover;
+    bool play = true;
 
 	void Start()
 	{
@@ -28,7 +31,13 @@ public class MenuButton : MonoBehaviour
 	}
 
 	void OnMouseOver()
-	{
+    {
+        if (play)
+        {
+            hover.Play();
+            play = false;
+        }
+
 		if (!over)
 		{
 			m_Renderer.material = m_OverMaterial;
@@ -41,6 +50,7 @@ public class MenuButton : MonoBehaviour
 	{
 		m_Renderer.material = m_NormalMaterial;
 		over = false;
+        play = true;
 	}
 
 	void OnMouseDown()
@@ -50,6 +60,8 @@ public class MenuButton : MonoBehaviour
 
 	void OnMouseUp()
 	{
+        Singleton.data.click.Play();
+
 		m_Renderer.material = m_OverMaterial;//m_NormalMaterial;
 
 		if (bt == MenuButtonType.Start)

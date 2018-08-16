@@ -22,6 +22,9 @@ public class GameButton : MonoBehaviour
 
     bool over = false;
 
+    public AudioSource hover;
+    bool play = true;
+
     void Start()
     {
         //m_Renderer.material = m_NormalMaterial;
@@ -29,6 +32,12 @@ public class GameButton : MonoBehaviour
 
     void OnMouseOver()
     {
+        if (play)
+        {
+            hover.Play();
+            play = false;
+        }
+
         if (!over)
         {
             //m_Renderer.material = m_OverMaterial;
@@ -41,6 +50,7 @@ public class GameButton : MonoBehaviour
     {
         //m_Renderer.material = m_NormalMaterial;
         over = false;
+        play = true;
     }
 
     void OnMouseDown()
@@ -50,6 +60,8 @@ public class GameButton : MonoBehaviour
 
     void OnMouseUp()
     {
+        Singleton.data.click.Play();
+
         if (bt == GameButtonType.Leave)
         {
             if( engn.Leave( ) )

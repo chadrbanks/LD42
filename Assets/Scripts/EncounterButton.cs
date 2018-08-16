@@ -13,6 +13,9 @@ public class EncounterButton : MonoBehaviour
     public EncounterHandler engn;
     public EncounterButtonType bt;
 
+    public AudioSource hover;
+    bool play = true;
+
     //bool over = false;
 
     void Start()
@@ -22,13 +25,16 @@ public class EncounterButton : MonoBehaviour
 
     void OnMouseOver()
     {
-        //
+        if (play)
+        {
+            hover.Play();
+            play = false;
+        }
     }
 
     void OnMouseExit()
     {
-        //m_Renderer.material = m_NormalMaterial;
-        //over = false;
+        play = true;
     }
 
     void OnMouseDown()
@@ -38,6 +44,8 @@ public class EncounterButton : MonoBehaviour
 
     void OnMouseUp()
     {
+        Singleton.data.click.Play();
+
         if (bt == EncounterButtonType.Attack)
         {
             engn.Action( 1 );

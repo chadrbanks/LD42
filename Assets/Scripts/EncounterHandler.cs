@@ -16,6 +16,8 @@ public class EncounterHandler : MonoBehaviour
 
     public GameObject quit, resume, battle;
 
+    public AudioSource fail;
+
 	void Start ()
     {
         quit.SetActive(false);
@@ -73,6 +75,7 @@ public class EncounterHandler : MonoBehaviour
             {
                 battleon = false;
                 mtxt.text = mtxt.text + "\nYour ship was destoyed!";
+                fail.Play();
             }
         }
         UpdateScreen();
@@ -89,6 +92,7 @@ public class EncounterHandler : MonoBehaviour
             if (hull <= 0)
             {
                 battleon = false;
+                Singleton.data.plyr.aicore++;
                 mtxt.text = mtxt.text + "\nYou destroyed the enemy ship!";
             }
         }
@@ -179,6 +183,6 @@ public class EncounterHandler : MonoBehaviour
         etxt.text = eship + "\nHull: " + hull + " / " + hullmax + "\nWeapons: " + weapons + "\nSpeed: " + speed + "\nFee: " + fee;
 
         ship1.text = Singleton.data.plyr.shipname + "\nHull: " + Singleton.data.plyr.hull + " / " + Singleton.data.plyr.hullmax + "\nWeapons: " + Singleton.data.plyr.weapons + "\nSpeed: " + Singleton.data.plyr.speed;
-        ship2.text = "Capacity: " + cap + " / " + Singleton.data.plyr.capmax + "\nFuel: " + Singleton.data.plyr.goods[3] + "\nCredits: " + Singleton.data.plyr.credits + "\nQuests: 0";
+        ship2.text = "Capacity: " + cap + " / " + Singleton.data.plyr.capmax + "\nFuel: " + Singleton.data.plyr.goods[3] + "\nCredits: " + Singleton.data.plyr.credits;// + "\nQuests: 0";
     }
 }

@@ -31,6 +31,8 @@ public class Singleton : MonoBehaviour
 
     public int raid = 0, startfuel, startcredit;
 
+    public AudioSource click, shipsound;
+
 	void Awake()
 	{
 		if (data == null)
@@ -55,6 +57,8 @@ public class Singleton : MonoBehaviour
         Singleton.data.plyr = new PlayerData();
 
         Singleton.data.plyr.ship = 0;
+        Singleton.data.plyr.aicore = 0;
+        Singleton.data.plyr.aicomp = 0;
         Singleton.data.plyr.planet = 1;
         Singleton.data.plyr.credits = startcredit;
 
@@ -123,5 +127,5 @@ public class PlayerData
     public int planet = 0;
     public float credits = 0;
     public List<int> goods = new List<int>();
-    public int speed, hull, hullmax, capmax, weapons;
+    public int speed, hull, hullmax, capmax, weapons, aicore, aicomp;
 }
