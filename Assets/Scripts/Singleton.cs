@@ -29,6 +29,8 @@ public class Singleton : MonoBehaviour
 
     public PlayerData plyr;
 
+    public int raid = 0, startfuel, startcredit;
+
 	void Awake()
 	{
 		if (data == null)
@@ -41,7 +43,12 @@ public class Singleton : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-	}
+    }
+
+    public int getCapacityUse()
+    {
+        return Singleton.data.plyr.goods[1] + Singleton.data.plyr.goods[2] + Singleton.data.plyr.goods[3] + Singleton.data.plyr.goods[4] + Singleton.data.plyr.goods[5];
+    }
 
     public void restartGame()
     {
@@ -49,13 +56,13 @@ public class Singleton : MonoBehaviour
 
         Singleton.data.plyr.ship = 0;
         Singleton.data.plyr.planet = 1;
-        Singleton.data.plyr.credits = 300;
+        Singleton.data.plyr.credits = startcredit;
 
         Singleton.data.plyr.goods = new List<int>();
         Singleton.data.plyr.goods.Add(0);
         Singleton.data.plyr.goods.Add(0);
         Singleton.data.plyr.goods.Add(0);
-        Singleton.data.plyr.goods.Add(3);
+        Singleton.data.plyr.goods.Add(startfuel);
         Singleton.data.plyr.goods.Add(0);
         Singleton.data.plyr.goods.Add(0);
 

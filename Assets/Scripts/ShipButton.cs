@@ -47,8 +47,8 @@ public class ShipButton : MonoBehaviour
         {
             Singleton.data.plyr.shipname = "B15 Defender";
             Singleton.data.plyr.speed = 3;
-            Singleton.data.plyr.hull = 5;
-            Singleton.data.plyr.hullmax = 5;
+            Singleton.data.plyr.hull = 20;
+            Singleton.data.plyr.hullmax = 20;
             Singleton.data.plyr.capmax = 15;
             Singleton.data.plyr.weapons = 10;
         }
@@ -56,8 +56,8 @@ public class ShipButton : MonoBehaviour
         {
             Singleton.data.plyr.shipname = "Speed Rogue";
             Singleton.data.plyr.speed = 5;
-            Singleton.data.plyr.hull = 3;
-            Singleton.data.plyr.hullmax = 3;
+            Singleton.data.plyr.hull = 10;
+            Singleton.data.plyr.hullmax = 10;
             Singleton.data.plyr.capmax = 10;
             Singleton.data.plyr.weapons = 5;
         }
@@ -65,8 +65,8 @@ public class ShipButton : MonoBehaviour
         {
             Singleton.data.plyr.shipname = "Assult E13";
             Singleton.data.plyr.speed = 3;
-            Singleton.data.plyr.hull = 10;
-            Singleton.data.plyr.hullmax = 10;
+            Singleton.data.plyr.hull = 50;
+            Singleton.data.plyr.hullmax = 50;
             Singleton.data.plyr.capmax = 10;
             Singleton.data.plyr.weapons = 15;
         }
@@ -74,8 +74,8 @@ public class ShipButton : MonoBehaviour
         {
             Singleton.data.plyr.shipname = "The Tank";
             Singleton.data.plyr.speed = 1;
-            Singleton.data.plyr.hull = 7;
-            Singleton.data.plyr.hullmax = 7;
+            Singleton.data.plyr.hull = 30;
+            Singleton.data.plyr.hullmax = 30;
             Singleton.data.plyr.capmax = 20;
             Singleton.data.plyr.weapons = 10;
         }

@@ -1545,6 +1545,9 @@ MonoBehaviour:
     hullmax: 0
     capmax: 0
     weapons: 0
+  raid: 0
+  startfuel: 10
+  startcredit: 200
 --- !u!4 &1621889332
 Transform:
   m_ObjectHideFlags: 0

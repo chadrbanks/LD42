@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public enum GameButtonType
 {
-    Home, Cantina, Market, Mine, Explore, Leave, Mine2, Quest
+    Home, Cantina, Market, Mine, Explore, Leave, Mine2, Quest, Repair
 }
 
 public class GameButton : MonoBehaviour
@@ -54,7 +54,32 @@ public class GameButton : MonoBehaviour
         {
             if( engn.Leave( ) )
             {
-                SceneManager.LoadScene("MapScene", LoadSceneMode.Single);
+                int encounter = 30;
+
+                if(Singleton.data.plyr.planet == 1)
+                {
+                    if( Random.Range( 1, 100 ) < 50 )
+                        Singleton.data.raid = 1;
+                    else
+                        Singleton.data.raid = 2;
+                }
+                else if (Singleton.data.plyr.planet == 2)
+                {
+                    Singleton.data.raid = 1; // SF
+                }
+                else if (Singleton.data.plyr.planet == 3)
+                {
+                    Singleton.data.raid = 2; // Pirate?
+                }
+
+                if (Random.Range(1, 100) < encounter)
+                {
+                    SceneManager.LoadScene("EncounterScene", LoadSceneMode.Single);
+                }
+                else
+                {
+                    SceneManager.LoadScene("MapScene", LoadSceneMode.Single);
+                }
             }
         }
         else

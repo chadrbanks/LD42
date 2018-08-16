@@ -14,6 +14,8 @@ public class GameEngine : MonoBehaviour
     public GameObject market, cantina, mines;
     public GameObject[] cantinappl;
 
+    bool cheap = false;
+
 	void Start ()
     {
         for (int x = 0; x < marketbuttons.Length; x++)
@@ -107,6 +109,46 @@ public class GameEngine : MonoBehaviour
             {
                 pname.text = "MISSINGNO";
                 pdesc.text = "Description.";
+            }
+        }
+        else if (bt == GameButtonType.Repair)
+        {
+            if( Singleton.data.plyr.hullmax > Singleton.data.plyr.hull)
+            {
+                if (!cheap)
+                {
+                    int damage = Singleton.data.plyr.hullmax - Singleton.data.plyr.hull;
+                    int cost = damage * 50;
+
+                    if (Singleton.data.plyr.credits >= cost)
+                    {
+                        Singleton.data.plyr.credits -= cost;
+                        Singleton.data.plyr.hull = Singleton.data.plyr.hullmax;
+                    }
+                    else
+                    {
+                        cheap = true;
+                        pdesc.text = "You cannot afford the " + cost + " credits needed for repairs.";
+                        pdesc.text = pdesc.text + "\n\nClick again to buy them in 50 credit increments (+1 hull).";
+                    }
+                }
+                else
+                {
+                    if (Singleton.data.plyr.credits >= 50)
+                    {
+                        Singleton.data.plyr.credits -= 50;
+                        Singleton.data.plyr.hull++;
+                    }
+                    else
+                    {
+                        //cheap = true;
+                        pdesc.text = "You cannot afford the 50 credits needed for 1 hull repair.";
+                    }
+                }
+             }
+            else
+            {
+                pdesc.text = "Your ship does not need repairs.";
             }
         }
         else if (bt == GameButtonType.Quest)

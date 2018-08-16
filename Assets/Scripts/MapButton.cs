@@ -94,6 +94,7 @@ public class MapButton : MonoBehaviour
         }
 
         Singleton.data.plyr.planet = planetid;
+
         SceneManager.LoadScene("GameScene2", LoadSceneMode.Single);
     }
 
