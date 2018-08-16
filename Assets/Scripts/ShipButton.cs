@@ -62,6 +62,7 @@ public class ShipButton : MonoBehaviour
             Singleton.data.plyr.hullmax = 20;
             Singleton.data.plyr.capmax = 15;
             Singleton.data.plyr.weapons = 10;
+            Singleton.data.plyr.credits += 100;
         }
         else if (id == 2)
         {
@@ -71,6 +72,7 @@ public class ShipButton : MonoBehaviour
             Singleton.data.plyr.hullmax = 10;
             Singleton.data.plyr.capmax = 10;
             Singleton.data.plyr.weapons = 5;
+            Singleton.data.plyr.credits += 300;
         }
         else if (id == 3)
         {
@@ -80,6 +82,7 @@ public class ShipButton : MonoBehaviour
             Singleton.data.plyr.hullmax = 50;
             Singleton.data.plyr.capmax = 10;
             Singleton.data.plyr.weapons = 15;
+            Singleton.data.plyr.credits += 200;
         }
         else
         {

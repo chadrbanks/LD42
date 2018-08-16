@@ -1503,7 +1503,7 @@ MonoBehaviour:
     aicore: 0
     aicomp: 0
   raid: 0
-  startfuel: 7
+  startfuel: 3
   startcredit: 200
   click: {fileID: 1621889333}
   shipsound: {fileID: 1621889334}
