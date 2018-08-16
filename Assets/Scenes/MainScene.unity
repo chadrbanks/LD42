@@ -1484,7 +1484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31f16fa9c1f44073a2354fc5f2eddf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 0.9.6
+  version: 0.9.7
   status: 1
   platform: 0
   gft: {fileID: 114574565502109196, guid: 0231cfc3fbb644efdb72f2b8720904ca, type: 2}
@@ -1502,6 +1502,8 @@ MonoBehaviour:
     weapons: 0
     aicore: 0
     aicomp: 0
+    explored: 0
+    neofuel: 0
   raid: 0
   startfuel: 3
   startcredit: 200
