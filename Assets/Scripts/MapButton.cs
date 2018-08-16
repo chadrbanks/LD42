@@ -90,7 +90,7 @@ public class MapButton : MonoBehaviour
         play = true;
     }
 
-    // 1 - Metal
+    // 1 - Gun
     // 2 - Crystals
     // 3 - Fuel
     // 4 - MedPod

@@ -55,13 +55,13 @@ public class GameEngine : MonoBehaviour
         else if (Singleton.data.plyr.planet == 4)
         {
             pname.text = "Space Station Base";
-            cantext.text = "Work coming soon...";
+            cantext.text = "Fuel.\nBottom line is I need it, a lot of it.\nWe are creating a lot of new powerful technology here, and we are gearing up for war.\nFor every unit you bring me, I can turn it into 5.\n\nYour cut can be two of those 5 new fuel.\nJust keep in mind this neo-fuel is not the same as regular fuel. It cannot be re-sold on any market, but it also does not use your ships capacity.";
             //pdesc.text = "A very hot planet with\ntripple the Earths gravity. Aside from the space port above the planet, there is not a lot of activity on the surface other than mining.";
         }
         else if (Singleton.data.plyr.planet == 5)
         {
             pname.text = "Average Asteroid";
-            cantext.text = "Work coming soon...";
+            cantext.text = "Simple operation here.\nOne sentry gun, one crystal, and 1000 credits.\nI upgrade your ships weapons and I also keep the credits.";
             //pdesc.text = "A very hot planet with\ntripple the Earths gravity. Aside from the space port above the planet, there is not a lot of activity on the surface other than mining.";
         }
         else
@@ -79,10 +79,8 @@ public class GameEngine : MonoBehaviour
 
     public bool Leave()
     {
-        if( Singleton.data.plyr.goods[3] > 0 )
+        if( Singleton.data.UseFuel() )
         {
-            Singleton.data.plyr.goods[3]--;
-
             return true;
         }
 
@@ -90,6 +88,7 @@ public class GameEngine : MonoBehaviour
         return false;
     }
 
+    // TODO : This needs to be broken down into sub functions!
     public void ClickedButton( GameButtonType bt )
     {
         cantina.SetActive(false);
@@ -255,11 +254,35 @@ public class GameEngine : MonoBehaviour
             }
             else if (Singleton.data.plyr.planet == 4)
             {
-                
+                // if fuel give 2 neo-fuel
+                if (Singleton.data.plyr.goods[3] > 0)
+                {
+                    Singleton.data.plyr.neofuel += 2;
+                    Singleton.data.plyr.goods[3]--;
+
+                    cantext.text = "Thank you, here is 2 units of neo-fuel.";
+                }
+                else
+                {
+                    cantext.text = "You have no fuel, what am I supposed to do?";
+                }
             }
             else if (Singleton.data.plyr.planet == 5)
             {
-                
+                // if crystal&gun&credits give +1 weapons
+                if ( Singleton.data.plyr.goods[1] > 0 && Singleton.data.plyr.goods[2] > 0 && Singleton.data.plyr.credits >= 1000 )
+                {
+                    Singleton.data.plyr.weapons++;
+                    Singleton.data.plyr.goods[1]--;
+                    Singleton.data.plyr.goods[2]--;
+                    Singleton.data.plyr.credits -= 1000;
+
+                    cantext.text = "Nice doin' business!";
+                }
+                else
+                {
+                    cantext.text = "What do you want?";
+                }
             }
             else
             {
@@ -342,10 +365,8 @@ public class GameEngine : MonoBehaviour
         {
             mines.SetActive(true);
 
-            if (Singleton.data.plyr.goods[3] > 0)
+            if (Singleton.data.UseFuel())
             {
-                Singleton.data.plyr.goods[3]--;
-
                 if (Singleton.data.plyr.planet == 1)
                 {
                     float r = Random.Range(1, 100);
@@ -410,8 +431,9 @@ public class GameEngine : MonoBehaviour
                     }
                     else
                     {
-                        Singleton.data.plyr.goods[1]++;
-                        pdesc.text = "You found raw metal, the refined metal has been added to your cargo!";
+                        float c = Random.Range(200, 500);
+                        Singleton.data.plyr.credits += c;
+                        pdesc.text = "You mined a big cache of material worth " + c + " credits!";
                     }
                 }
                 else
@@ -427,10 +449,8 @@ public class GameEngine : MonoBehaviour
         }
         else if (bt == GameButtonType.Explore )
         {
-            if (Singleton.data.plyr.goods[3] > 0)
+            if (Singleton.data.UseFuel())
             {
-                Singleton.data.plyr.goods[3]--;
-
                 if (Singleton.data.plyr.explored < 1)
                 {
                     if (Singleton.data.plyr.planet == 2)
@@ -462,7 +482,6 @@ public class GameEngine : MonoBehaviour
                     {
                         pname.text = "New Earth";
                         pdesc.text = "There is not much on this planet to explore.";
-                        Singleton.data.plyr.goods[3]++;
                     }
                     else if (Singleton.data.plyr.planet == 3)
                     {
@@ -473,13 +492,11 @@ public class GameEngine : MonoBehaviour
                     {
                         pname.text = "Satellite";
                         pdesc.text = "There is nothing on this satillite to explore.";
-                        Singleton.data.plyr.goods[3]++;
                     }
                     else if (Singleton.data.plyr.planet == 5)
                     {
                         pname.text = "Asteroid";
                         pdesc.text = "There is nothing on this tiny rock to explore.";
-                        Singleton.data.plyr.goods[3]++;
                     }
                     else
                     {
@@ -546,7 +563,7 @@ public class GameEngine : MonoBehaviour
         int cap = getCapacityUse();
 
         ship1.text = Singleton.data.plyr.shipname + "\nHull: " + Singleton.data.plyr.hull + " / " + Singleton.data.plyr.hullmax + "\nWeapons: " + Singleton.data.plyr.weapons + "\nSpeed: " + Singleton.data.plyr.speed;
-        ship2.text = "Capacity: " + cap + " / " + Singleton.data.plyr.capmax + "\nFuel: " + Singleton.data.plyr.goods[3] + "\nCredits: " + Singleton.data.plyr.credits;// + "\nQuests: 0";
+        ship2.text = "Capacity: " + cap + " / " + Singleton.data.plyr.capmax + "\nFuel: " + Singleton.data.GetFuel() + "\nCredits: " + Singleton.data.plyr.credits;// + "\nQuests: 0";
 
         if (Input.GetKeyUp(KeyCode.Escape))
         {

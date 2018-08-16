@@ -52,6 +52,27 @@ public class Singleton : MonoBehaviour
         return Singleton.data.plyr.goods[1] + Singleton.data.plyr.goods[2] + Singleton.data.plyr.goods[3] + Singleton.data.plyr.goods[4] + Singleton.data.plyr.goods[5];
     }
 
+    public bool UseFuel()
+    {
+        if (Singleton.data.plyr.neofuel > 0)
+        {
+            Singleton.data.plyr.neofuel--;
+            return true;
+        }
+        else if (Singleton.data.plyr.goods[3] > 0)
+        {
+            Singleton.data.plyr.goods[3]--;
+            return true;
+        }
+
+        return false;
+    }
+
+    public int GetFuel()
+    {
+        return (Singleton.data.plyr.goods[3] + Singleton.data.plyr.neofuel);
+    }
+
     public void restartGame()
     {
         Singleton.data.plyr = new PlayerData();
@@ -60,6 +81,7 @@ public class Singleton : MonoBehaviour
         Singleton.data.plyr.aicore = 0;
         Singleton.data.plyr.aicomp = 0;
         Singleton.data.plyr.planet = 1;
+        Singleton.data.plyr.neofuel = 0;
         Singleton.data.plyr.explored = 0;
         Singleton.data.plyr.credits = startcredit;
 
@@ -128,5 +150,5 @@ public class PlayerData
     public int planet = 0;
     public float credits = 0;
     public List<int> goods = new List<int>();
-    public int speed, hull, hullmax, capmax, weapons, aicore, aicomp, explored;
+    public int speed, hull, hullmax, capmax, weapons, aicore, aicomp, explored, neofuel;
 }
