@@ -27,19 +27,19 @@ public class ShipButton : MonoBehaviour
 
         if (id == 1)
         {
-            ss.text = "B15 Defender\nSpeed: 3\nHull: 5\nStorage: 15\nWeapons: 10";
+            ss.text = "B15 Defender\nSpeed: 3\nHull: 20\nStorage: 15\nWeapons: 10\nCredits: 300";
         }
         else if (id == 2)
         {
-            ss.text = "Speed Rogue\nSpeed: 5\nHull: 3\nStorage: 10\nWeapons: 5";
+            ss.text = "Speed Rogue\nSpeed: 5\nHull: 10\nStorage: 10\nWeapons: 5\nCredits: 500";
         }
         else if (id == 3)
         {
-            ss.text = "Assult E13\nSpeed: 3\nHull: 10\nStorage: 10\nWeapons: 15";
+            ss.text = "Assult E13\nSpeed: 3\nHull: 50\nStorage: 10\nWeapons: 15\nCredits: 400";
         }
         else if (id == 4)
         {
-            ss.text = "The Tank\nSpeed: 1\nHull: 7\nStorage: 20\nWeapons: 10";
+            ss.text = "The Tank\nSpeed: 1\nHull: 30\nStorage: 20\nWeapons: 10\nCredits: 200";
         }
     }
 

@@ -83,6 +83,17 @@ public class GameButton : MonoBehaviour
                 {
                     Singleton.data.raid = 2; // Pirate?
                 }
+                else if (Singleton.data.plyr.planet == 4)
+                {
+                    Singleton.data.raid = 2; // Pirate?
+                }
+                else if (Singleton.data.plyr.planet == 5)
+                {
+                    if (Random.Range(1, 100) < 50)
+                        Singleton.data.raid = 1;
+                    else
+                        Singleton.data.raid = 2;
+                }
 
                 if (Random.Range(1, 100) < encounter)
                 {

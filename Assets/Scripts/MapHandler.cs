@@ -27,10 +27,16 @@ public class MapHandler : MonoBehaviour
             red.SetActive(false);
             green.SetActive(false);
         }
-        else
+        else if (id == 3)
         {
             blue.SetActive(false);
             red.SetActive(true);
+            green.SetActive(false);
+        }
+        else
+        {
+            blue.SetActive(false);
+            red.SetActive(false);
             green.SetActive(false);
         }
     }

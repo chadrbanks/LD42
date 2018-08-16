@@ -60,6 +60,7 @@ public class Singleton : MonoBehaviour
         Singleton.data.plyr.aicore = 0;
         Singleton.data.plyr.aicomp = 0;
         Singleton.data.plyr.planet = 1;
+        Singleton.data.plyr.explored = 0;
         Singleton.data.plyr.credits = startcredit;
 
         Singleton.data.plyr.goods = new List<int>();
@@ -127,5 +128,5 @@ public class PlayerData
     public int planet = 0;
     public float credits = 0;
     public List<int> goods = new List<int>();
-    public int speed, hull, hullmax, capmax, weapons, aicore, aicomp;
+    public int speed, hull, hullmax, capmax, weapons, aicore, aicomp, explored;
 }

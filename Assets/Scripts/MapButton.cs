@@ -15,7 +15,28 @@ public class MapButton : MonoBehaviour
 
 	void Start ()
     {
-		
+        if (planetid == 4)
+        {
+            if (Singleton.data.plyr.aicomp >= 20)
+            {
+                //
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
+        }
+        else if (planetid == 5)
+        {
+            if (Singleton.data.plyr.explored >= 1)
+            {
+                //
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
+        }
     }
 
     void OnMouseOver()
@@ -44,6 +65,16 @@ public class MapButton : MonoBehaviour
         {
             pname.text = "Santigo 3G";
             pdesc.text = "A very hot planet with\ntripple the Earths gravity.\nAside from the space port\nabove the planet, there is\nnot a lot of activity on the\nsurface other than mining.";
+        }
+        else if (planetid == 4)
+        {
+            pname.text = "Space Station Base";
+            pdesc.text = "A remote base in space.\nStrange things are\nhappening here.";
+        }
+        else if (planetid == 5)
+        {
+            pname.text = "Average Asteroid";
+            pdesc.text = "This is no moon.\nThis appears to be normal.\nBut upon closer inspection....\nit is not!";
         }
         else
         {
@@ -94,14 +125,23 @@ public class MapButton : MonoBehaviour
             Singleton.data.prices[4] = Random.Range(750, 1500);
             Singleton.data.prices[5] = Random.Range(10, 100);
         }
-        else
+        else if (planetid == 4) // Sat
         {
             Singleton.data.prices[0] = 0;
-            Singleton.data.prices[1] = Random.Range(1, 200);
-            Singleton.data.prices[2] = Random.Range(1, 200);
-            Singleton.data.prices[3] = Random.Range(1, 200);
-            Singleton.data.prices[4] = Random.Range(1, 200);
-            Singleton.data.prices[5] = Random.Range(1, 200);
+            Singleton.data.prices[1] = Random.Range(300, 500);
+            Singleton.data.prices[2] = Random.Range(10, 200);
+            Singleton.data.prices[3] = Random.Range(300, 500);
+            Singleton.data.prices[4] = Random.Range(750, 1000);
+            Singleton.data.prices[5] = Random.Range(50, 100);
+        }
+        else if (planetid == 5) // Asteroid
+        {
+            Singleton.data.prices[0] = 0;
+            Singleton.data.prices[1] = Random.Range(200, 300);
+            Singleton.data.prices[2] = Random.Range(300, 500);
+            Singleton.data.prices[3] = Random.Range(90, 150);
+            Singleton.data.prices[4] = Random.Range(750, 1000);
+            Singleton.data.prices[5] = Random.Range(100, 200);
         }
 
         Singleton.data.plyr.planet = planetid;

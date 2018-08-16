@@ -52,6 +52,18 @@ public class GameEngine : MonoBehaviour
             cantext.text = "I need medi-pods down here. I have a lot of good workers getting hurt in this horrible work environmnet.\nI can't really pay much but we have tons of skilled workers and spare parts.\nHow about a free ship repair and upgrade for every medi-pod you bring me?";
             //pdesc.text = "A very hot planet with\ntripple the Earths gravity. Aside from the space port above the planet, there is not a lot of activity on the surface other than mining.";
         }
+        else if (Singleton.data.plyr.planet == 4)
+        {
+            pname.text = "Space Station Base";
+            cantext.text = "Work coming soon...";
+            //pdesc.text = "A very hot planet with\ntripple the Earths gravity. Aside from the space port above the planet, there is not a lot of activity on the surface other than mining.";
+        }
+        else if (Singleton.data.plyr.planet == 5)
+        {
+            pname.text = "Average Asteroid";
+            cantext.text = "Work coming soon...";
+            //pdesc.text = "A very hot planet with\ntripple the Earths gravity. Aside from the space port above the planet, there is not a lot of activity on the surface other than mining.";
+        }
         else
         {
             pname.text = "MISSINGNO";
@@ -105,6 +117,16 @@ public class GameEngine : MonoBehaviour
             else if (Singleton.data.plyr.planet == 3)
             {
                 pname.text = "Santigo Cantigo";
+                pdesc.text = "";
+            }
+            else if (Singleton.data.plyr.planet == 4)
+            {
+                pname.text = "Sat Port";
+                pdesc.text = "";
+            }
+            else if (Singleton.data.plyr.planet == 5)
+            {
+                pname.text = "Asteroid Escape!";
                 pdesc.text = "";
             }
             else
@@ -175,7 +197,7 @@ public class GameEngine : MonoBehaviour
             else if (Singleton.data.plyr.planet == 2)
             {
                 // if ai give reward
-                if( Singleton.data.plyr.aicore > 0 )
+                if (Singleton.data.plyr.aicore > 0)
                 {
                     Singleton.data.plyr.aicore--;
                     Singleton.data.plyr.aicomp++;
@@ -183,7 +205,7 @@ public class GameEngine : MonoBehaviour
                     int reward = (200 * Singleton.data.plyr.aicomp);
                     Singleton.data.plyr.credits += reward;
 
-                    if( Singleton.data.plyr.aicomp == 20 )
+                    if (Singleton.data.plyr.aicomp == 20)
                     {
                         cantext.text = "Thanks for all the work you have been doing. Here is a key to my projects secret location!";
                     }
@@ -199,12 +221,12 @@ public class GameEngine : MonoBehaviour
             }
             else if (Singleton.data.plyr.planet == 3)
             {
-                if( Singleton.data.plyr.goods[4] > 0 )
+                if (Singleton.data.plyr.goods[4] > 0)
                 {
                     Singleton.data.plyr.goods[4]--;
 
                     int roll = Random.Range(1, 100);
-                    if( roll < 25 )
+                    if (roll < 25)
                     {
                         Singleton.data.plyr.weapons++;
                     }
@@ -222,12 +244,22 @@ public class GameEngine : MonoBehaviour
                         Singleton.data.plyr.speed++;
                     }
 
+                    Singleton.data.plyr.hull = Singleton.data.plyr.hullmax;
+
                     cantext.text = "Thank you, enjoy your ship upgrade!";
                 }
                 else
                 {
                     cantext.text = "You have no medi-pods, come back when you are serious!";
                 }
+            }
+            else if (Singleton.data.plyr.planet == 4)
+            {
+                
+            }
+            else if (Singleton.data.plyr.planet == 5)
+            {
+                
             }
             else
             {
@@ -250,6 +282,16 @@ public class GameEngine : MonoBehaviour
             else if (Singleton.data.plyr.planet == 3)
             {
                 pname.text = "Sand Road";
+                pdesc.text = "";
+            }
+            else if (Singleton.data.plyr.planet == 4)
+            {
+                pname.text = "Trading Orb";
+                pdesc.text = "";
+            }
+            else if (Singleton.data.plyr.planet == 5)
+            {
+                pname.text = "Aazaar";
                 pdesc.text = "";
             }
             else
@@ -276,6 +318,17 @@ public class GameEngine : MonoBehaviour
             else if (Singleton.data.plyr.planet == 3)
             {
                 pname.text = "Santigo Mines";
+                pdesc.text = "";
+                mines.SetActive(true);
+            }
+            else if (Singleton.data.plyr.planet == 4)
+            {
+                pname.text = "Space Station";
+                pdesc.text = "You cannot mine here.";
+            }
+            else if (Singleton.data.plyr.planet == 5)
+            {
+                pname.text = "Asteroid Mines";
                 pdesc.text = "";
                 mines.SetActive(true);
             }
@@ -337,6 +390,30 @@ public class GameEngine : MonoBehaviour
                         pdesc.text = "You struck oil, the fuel has been added to your cargo!";
                     }
                 }
+                else if (Singleton.data.plyr.planet == 4)
+                {
+                    //
+                }
+                else if (Singleton.data.plyr.planet == 5)
+                {
+                    float r = Random.Range(1, 100);
+
+                    if (r < 25)
+                    {
+                        pdesc.text = "You were unable to find anything!";
+                    }
+                    else if (r < 80)
+                    {
+                        float c = Random.Range(1, 250);
+                        Singleton.data.plyr.credits += c;
+                        pdesc.text = "You mined some material worth " + c + " credits!";
+                    }
+                    else
+                    {
+                        Singleton.data.plyr.goods[1]++;
+                        pdesc.text = "You found raw metal, the refined metal has been added to your cargo!";
+                    }
+                }
                 else
                 {
                     pname.text = "MISSINGNO";
@@ -350,25 +427,70 @@ public class GameEngine : MonoBehaviour
         }
         else if (bt == GameButtonType.Explore )
         {
-            if (Singleton.data.plyr.planet == 1)
+            if (Singleton.data.plyr.goods[3] > 0)
             {
-                pname.text = "The Green Planet";
-                pdesc.text = "Sorry, you cannot yet explore this planet.";
-            }
-            else if (Singleton.data.plyr.planet == 2)
-            {
-                pname.text = "New Earth";
-                pdesc.text = "There is not much on this planet left to explore.";
-            }
-            else if (Singleton.data.plyr.planet == 3)
-            {
-                pname.text = "Santigo 3G";
-                pdesc.text = "Sorry, you cannot yet explore this planet.";
+                Singleton.data.plyr.goods[3]--;
+
+                if (Singleton.data.plyr.explored < 1)
+                {
+                    if (Singleton.data.plyr.planet == 2)
+                    {
+                        pname.text = "New Earth";
+                        pdesc.text = "There is nothing on this planet to explore.";
+                    }
+                    else if (Random.Range(1, 100) < 11)
+                    {
+                        Singleton.data.plyr.explored = 1;
+
+                        pname.text = "Hidden Map!";
+                        pdesc.text = "You found coords to A hidden place!\n\nIt will now show up on your map!";
+                    }
+                    else
+                    {
+                        pname.text = "Nothing!";
+                        pdesc.text = "You found nothing of value!";
+                    }
+                }
+                else
+                {
+                    if (Singleton.data.plyr.planet == 1)
+                    {
+                        pname.text = "The Green Planet";
+                        pdesc.text = "You find nothing.";
+                    }
+                    else if (Singleton.data.plyr.planet == 2)
+                    {
+                        pname.text = "New Earth";
+                        pdesc.text = "There is not much on this planet to explore.";
+                        Singleton.data.plyr.goods[3]++;
+                    }
+                    else if (Singleton.data.plyr.planet == 3)
+                    {
+                        pname.text = "Santigo 3G";
+                        pdesc.text = "You find nothing.";
+                    }
+                    else if (Singleton.data.plyr.planet == 4)
+                    {
+                        pname.text = "Satellite";
+                        pdesc.text = "There is nothing on this satillite to explore.";
+                        Singleton.data.plyr.goods[3]++;
+                    }
+                    else if (Singleton.data.plyr.planet == 5)
+                    {
+                        pname.text = "Asteroid";
+                        pdesc.text = "There is nothing on this tiny rock to explore.";
+                        Singleton.data.plyr.goods[3]++;
+                    }
+                    else
+                    {
+                        pname.text = "MISSINGNO";
+                        pdesc.text = "Description.";
+                    }
+                }
             }
             else
             {
-                pname.text = "MISSINGNO";
-                pdesc.text = "Description.";
+                pdesc.text = "You do not have any fuel to do this.";
             }
         }
         else
